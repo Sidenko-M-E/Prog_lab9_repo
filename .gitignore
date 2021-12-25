@@ -1,0 +1,11 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+/Prog_lab9_cpp/Prog_lab9_cpp.vcxproj.user
+/Prog_lab9_cpp/Prog_lab9_cpp.vcxproj.filters
+/Prog_lab9_cpp/Prog_lab9_cpp.vcxproj
+/Prog_lab9_cpp/.vs/Prog_lab9_cpp/v16/Browse.VC.opendb
+/Prog_lab9_cpp/.vs/Prog_lab9_cpp/v16/Browse.VC.db-wal
+/Prog_lab9_cpp/.vs/Prog_lab9_cpp/v16/Browse.VC.db-shm
+/Prog_lab9_cpp/.vs/Prog_lab9_cpp/v16/Browse.VC.db
