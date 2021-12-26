@@ -202,28 +202,63 @@ void Faculty::IsHavingEnoughCandidates(bool &result)
 		result = false;
 }
 
-bool Faculty::Init(string bufFacultyName, int studentsQuantity, int bachelorsQuantity, int mastersQuantity, int teachersQuantity, int candidatesQuantity, int doctorsQuanity, int discpilinesQuantity)
+Faculty::Faculty()
+{
+	facultyName = "unstated";
+	quantityOfStudents = 0;
+	quantityOfBachelors = 0;
+	quantityOfMasters = 0;
+	quantityOfTeachers = 0;
+	quantityOfCandidates = 0;
+	quantityOfDoctors = 0;
+	quantityOfDisciplines = 0;
+}
+
+Faculty::Faculty(string bufFacultyName)
+{
+	facultyName = bufFacultyName;
+	quantityOfStudents = 0;
+	quantityOfBachelors = 0;
+	quantityOfMasters = 0;
+	quantityOfTeachers = 0;
+	quantityOfCandidates = 0;
+	quantityOfDoctors = 0;
+	quantityOfDisciplines = 0;
+}
+
+Faculty::Faculty(string bufFacultyName, int studentsQuantity, int bachelorsQuantity, int mastersQuantity, 
+	int teachersQuantity, int candidatesQuantity, int doctorsQuanity, int discpilinesQuantity)
 {
 	Faculty check;
- 
-	if (check.SetFacultyName(bufFacultyName) || check.SetQuantityOfStudents(studentsQuantity) ||
+
+	if (!(check.SetFacultyName(bufFacultyName) || check.SetQuantityOfStudents(studentsQuantity) ||
 		check.SetQuantityOfBachelors(bachelorsQuantity) || check.SetQuantityOfMasters(mastersQuantity) ||
 		check.SetQuantityOfTeachers(teachersQuantity) || check.SetQuantityOfCandidates(candidatesQuantity) ||
-		check.SetQuantityOfDoctors(doctorsQuanity) || check.SetQuantityOfDisciplines(discpilinesQuantity))
-		return (true);
-	else
+		check.SetQuantityOfDoctors(doctorsQuanity) || check.SetQuantityOfDisciplines(discpilinesQuantity)))
 	{
-		SetFacultyName(bufFacultyName);
-		SetQuantityOfStudents(studentsQuantity);
-		SetQuantityOfBachelors(bachelorsQuantity);
-		SetQuantityOfMasters(mastersQuantity);
-		SetQuantityOfTeachers(teachersQuantity);
-		SetQuantityOfCandidates(candidatesQuantity);
-		SetQuantityOfDoctors(doctorsQuanity);
-		SetQuantityOfDisciplines(discpilinesQuantity);
-		return (false);
+		facultyName = bufFacultyName;
+		quantityOfStudents = studentsQuantity;
+		quantityOfBachelors = bachelorsQuantity;
+		quantityOfMasters = mastersQuantity;
+		quantityOfTeachers = teachersQuantity;
+		quantityOfCandidates = candidatesQuantity;
+		quantityOfDoctors = doctorsQuanity;
+		quantityOfDisciplines = discpilinesQuantity;
 	}
 }
+
+Faculty::Faculty(const Faculty& bufFaculty)
+{
+	facultyName = bufFaculty.facultyName;
+	quantityOfStudents = bufFaculty.quantityOfStudents*2;
+	quantityOfBachelors = bufFaculty.quantityOfBachelors*2;
+	quantityOfMasters = bufFaculty.quantityOfMasters*2;
+	quantityOfTeachers = bufFaculty.quantityOfTeachers*2;
+	quantityOfCandidates = bufFaculty.quantityOfCandidates*2;
+	quantityOfDoctors = bufFaculty.quantityOfDoctors*2;
+	quantityOfDisciplines = bufFaculty.quantityOfDisciplines*2;
+}
+
 
 bool Faculty::Read()
 {
@@ -271,10 +306,14 @@ bool Faculty::Read()
 	if (check.SetQuantityOfDisciplines(bufInt))
 		return (true);
 															
-	Init(check.GetFacultyName(), check.GetQuantityOfStudents(), 
-		check.GetQuantityOfBachelors(), check.GetQuantityOfMasters(), 
-		check.GetQuantityOfTeachers(), check.GetQuantityOfCandidates(),
-		check.GetQuantityOfDoctors(), check.GetQuantityOfDisciplines());
+	facultyName = check.GetFacultyName();
+	quantityOfStudents = check.GetQuantityOfStudents();
+	quantityOfBachelors = check.GetQuantityOfBachelors();
+	quantityOfMasters = check.GetQuantityOfMasters();
+	quantityOfTeachers = check.GetQuantityOfTeachers();
+	quantityOfCandidates = check.GetQuantityOfCandidates();
+	quantityOfDoctors = check.GetQuantityOfDoctors();
+	quantityOfDisciplines = check.GetQuantityOfDisciplines();
 	return (false);												
 }
 

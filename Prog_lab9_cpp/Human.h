@@ -24,7 +24,10 @@ public:
 	double GetWeight();
 	char GetGender();
 
-	bool Init(int bufId, int bufAge, int bufHeight, double bufWeight, char bufGender, Fio bufFio);
+	Human();
+	Human(int bufId);
+	Human(int bufId, int bufAge, int bufHeight, double bufWeight, char bufGender, Fio bufFio);
+
 	bool Read();
 	void Display();
 };

@@ -85,24 +85,42 @@ char Human::GetGender()
 	return (gender);
 }
 
-bool Human::Init(int bufId, int bufAge, int bufHeight, double bufWeight, char bufGender, Fio bufFio)
+Human::Human()
+{	
+	id = 0;
+	age = 0;
+	height = 40;
+	weight = 0;
+	gender = 'M';
+}
+
+Human::Human(int bufId)
+{
+	id = 0;
+	age = 0;
+	height = 40;
+	weight = 0;
+	gender = 'M';
+
+	SetId(bufId);
+}
+
+Human::Human(int bufId, int bufAge, int bufHeight, double bufWeight, char bufGender, Fio bufFio)
 {
 	Human check;
 
-	if (check.SetId(bufId) || check.SetAge(bufAge) || check.SetHeight(bufHeight) || 
-		check.SetWeight(bufWeight) || check.SetGender(bufGender))
-		return (true);
-	else
+	if (!(check.SetId(bufId) || check.SetAge(bufAge) || check.SetHeight(bufHeight) ||
+		check.SetWeight(bufWeight) || check.SetGender(bufGender)))
 	{
-		SetId(check.GetId());
-		SetAge(check.GetAge());
-		SetHeight(check.GetHeight());
-		SetWeight(check.GetWeight());
-		SetGender(check.GetGender());
+		id = bufId;
+		age = bufAge;
+		height = bufHeight;
+		weight = bufWeight;
+		gender = bufGender;
 		fioField = bufFio;
-		return (false);
 	}
 }
+
 
 bool Human::Read()
 {
@@ -140,8 +158,12 @@ bool Human::Read()
 	if (check.fioField.Read())
 		return (true);
 
-	Init(check.GetId(), check.GetAge(), check.GetHeight(), 
-		check.GetWeight(), check.GetGender(), check.fioField);
+	id = check.GetId();
+	age = check.GetAge();
+	height = check.GetHeight();
+	weight = check.GetWeight();
+	gender = check.GetGender();
+	fioField = check.fioField;
 	return(false);								
 }
 

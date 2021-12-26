@@ -80,21 +80,35 @@ string Student::GetFacultyName()
 	return (facultyName);
 }
 
-bool Student::Init(int bufCourse, string bufEduProg, string bufGroup, string bufFacultyName, Human bufHuman)
+Student::Student()
+{
+	course = 0;
+	eduProg = "unstated";
+	group = "unstated";
+	facultyName = "unstated";
+}
+
+Student::Student(Human bufHuman)
+{
+	course = 0;
+	eduProg = "unstated";
+	group = "unstated";
+	facultyName = "unstated";
+	humanField = bufHuman;
+}
+
+Student::Student(int bufCourse, string bufEduProg, string bufGroup, string bufFacultyName, Human bufHuman)
 {
 	Student check;
 
-	if (check.SetCourse(bufCourse) || check.SetEduProg(bufEduProg) || check.SetGroup(bufGroup) ||
-		check.SetFacultyName(bufFacultyName))
-		return (true);
-	else
+	if (!(check.SetCourse(bufCourse) || check.SetEduProg(bufEduProg) || check.SetGroup(bufGroup) ||
+		check.SetFacultyName(bufFacultyName)))
 	{
-		SetCourse(bufCourse);
-		SetEduProg(bufEduProg);
-		SetGroup(bufGroup);
-		SetFacultyName(bufFacultyName);
+		course = bufCourse;
+		eduProg = bufEduProg;
+		group = bufGroup;
+		facultyName = bufFacultyName;
 		humanField = bufHuman;
-		return (false);
 	}
 }
 
@@ -128,8 +142,11 @@ bool Student::Read()
 	if (check.humanField.Read())
 		return (true);
 
-	Init(check.GetCourse(), check.GetEduProg(), 
-		check.GetGroup(), check.GetFacultyName(), check.humanField);
+	course = check.GetCourse();
+	eduProg = check.GetEduProg();
+	group = check.GetGroup();
+	facultyName = check.GetFacultyName();
+	humanField = check.humanField;
 	return(false);
 }
 

@@ -26,7 +26,10 @@ public:
 	Teacher operator++(int unused);//postfix
 	static double GetSalaryOf(Teacher& bufTeacher);
 
-	bool Init(int bufWorkExp, string bufDegree, string bufFacultyName, Human bufHuman);
+	Teacher();
+	Teacher(Human bufHuman);
+	Teacher(int bufWorkExp, string bufDegree, string bufFacultyName, Human bufHuman);
+
 	bool Read();
 	void Display();
 };

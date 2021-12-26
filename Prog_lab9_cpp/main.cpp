@@ -6,34 +6,30 @@
 #include "Teacher.h"
 #include "Faculty.h"
 
-//test
-	/*
-	FIO myFio;
-	myFio.Init("Sidenko", "Matvey", "Evgenievich");
-	myFio.Display();
-
-	FIO demoFio;
-	demoFio.Init("Petrov", "Oleg", "Victorovich");
-	demoFio.Display();
-
-	myFio = demoFio;
-	myFio.Display();
-
-	demoFio.Init("fff", "ggg", "ddd");
-	demoFio.Display();
-	myFio.Display();
-	*/
-
 int main()
 {
-
-	/*
 	cout << "--------Fio class--------" << endl;
-	cout << "------Init method-------" << endl;
-	Fio myFio;
-	myFio.Init("Popov", "Alexandr", "Dmitrievich");
-	myFio.Display();
-	*/
+	cout << "------Constructors-------" << endl;
+	Fio fio1;
+	fio1.Display();
+	Fio fio2("Popov");
+	fio2.Display();
+	Fio fio3("Ivanov", "Sergey" , "Ivanovich");
+	fio3.Display();
+
+	cout << endl << "------Constructors of dynamic-------" << endl;
+	Fio* dynamicFio1 = new Fio();
+	dynamicFio1->Display();
+	Fio* dynamicFio2 = new Fio("Dynamicov");
+	dynamicFio2->Display();
+	Fio* dynamicFio3 = new Fio("Dynamicov", "Dynamic", "Dynamicovich");
+	dynamicFio3->Display();
+
+	cout << endl << "\n-----Array of objects with constructor----" << endl;
+	string filler;
+	Fio arrayFio[3] = {filler = "first", filler = "second", filler = "third"};
+	for (int i = 0; i < 3; i++)
+		arrayFio[i].Display();
 	/*
 	cout << endl << "---Read method---" << endl;
 	if (!myFio.Read())
@@ -48,15 +44,27 @@ int main()
 		myFio.Display();
 	*/
 
-	/*
 	cout << endl << "--------Human class--------" << endl;
-	cout << "-------Init method-------" << endl;
-	Human myHuman;
-	if(myHuman.Init(1913, 19, 182, 70, 'F', myFio))
-		cout << "error" << endl;
-	else
-		myHuman.Display();
-	*/
+	cout << "------Constructors-------" << endl;
+	Human human1;
+	human1.Display();
+	Human human2(3);
+	human2.Display();
+	Human human3(1913, 19, 182, 70, 'F', fio3);
+	human3.Display();
+
+	cout << endl << "------Constructors of dynamic-------" << endl;
+	Human* dynamicHuman1 = new Human();
+	dynamicHuman1->Display();
+	Human* dynamicHuman2 = new Human(1988);
+	dynamicHuman2->Display();
+	Human* dynamicHuman3 = new Human(1913, 19, 182, 70, 'F', fio3);
+	dynamicHuman3->Display();
+
+	cout << endl << "\n-----Array of objects with constructor----" << endl;
+	Human arrayHuman[3] = { 3, 4, 5};
+	for (int i = 0; i < 3; i++)
+		arrayHuman[i].Display();
 	/*
 	cout << "\n------Read method------\n";
 	if (myHuman.Read())
@@ -73,15 +81,28 @@ int main()
 	*/
 
 	
-	//cout << "\n--------Student class--------\n";
-	//cout << "-------Init method-------\n";
-	/*
-	Student myStudent;
-	if (myStudent.Init(3, "Bachelor", "PI-03", "FoIT", myHuman))
-		cout << "error\n";
-	else 
-		myStudent.Display();
+	cout << "\n--------Student class--------\n";
+	cout << "------Constructors-------" << endl;
+	Student student1;
+	student1.Display();
+	Student student2(human3);
+	student2.Display();
+	Student student3(3, "Bachelor", "PI-03", "FoIT", human3);
+	student3.Display();
 
+	cout << endl << "------Constructors of dynamic-------" << endl;
+	Student* dynamicStudent1 = new Student();
+	dynamicStudent1->Display();
+	Student* dynamicStudent2 = new Student(human3);
+	dynamicHuman2->Display();
+	Student* dynamicStudent3 = new Student(3, "Bachelor", "PI-03", "FoIT", human3);
+	dynamicHuman3->Display();
+
+	cout << endl << "\n-----Array of objects with constructor----" << endl;
+	Student arrayStudent[3] = {human1, human2, human3};
+	for (int i = 0; i < 3; i++)
+		arrayStudent[i].Display();
+	/*
 	cout << "\n------Read method------\n";
 	if (myStudent.Read())
 		cout << "error\n";
@@ -97,16 +118,29 @@ int main()
 		myStudent.Display();
 	*/
 
-	/*
+	
 	cout << "\n--------Teacher class--------\n";
-	cout << "-------Init method-------\n";
-	Teacher myTeacher;
-	if (myTeacher.Init(40, "Candidate of Mathematical Sciences", 
-		"FoMS", myHuman))
-		cout << "error\n";
-	else
-		myTeacher.Display();
+	cout << "------Constructors-------" << endl;
+	Teacher teacher1;
+	teacher1.Display();
+	Teacher teacher2(human3);
+	teacher2.Display();
+	Teacher teacher3(18, "Doctor of Mathematical Sciences", "FoMS", human3);
+	teacher3.Display();
 
+	cout << endl << "------Constructors of dynamic-------" << endl;
+	Teacher* dynamicTeacher1 = new Teacher();
+	dynamicTeacher1->Display();
+	Teacher* dynamicTeacher2 = new Teacher(human3);
+	dynamicTeacher2->Display();
+	Teacher* dynamicTeacher3 = new Teacher(18, "Doctor of Mathematical Sciences", "FoMS", human3);
+	dynamicTeacher3->Display();
+
+	cout << endl << "-----Array of objects with constructor----" << endl;
+	Teacher arrayTeacher[3] = { human1, human2, human3 };
+	for (int i = 0; i < 3; i++)
+		arrayTeacher[i].Display();
+	/*
 	cout << "\n------Read method------\n";
 	if (myTeacher.Read())
 		cout << "error\n";
@@ -118,7 +152,6 @@ int main()
 		cout << "error\n";
 	else
 		myTeacher.Display();
-	*/
 	/*
 	cout << "\n----operator overloading demo----\n";
 	Teacher demoTeacher;
@@ -141,6 +174,7 @@ int main()
 	demoTeacher.Display();
 	*/
 
+	/*
 	cout << "\nStatic method demo\n";
 	Fio myFio;
 	myFio.Init("Popov", "Alexandr", "Dmitrievich");
@@ -155,16 +189,36 @@ int main()
 	cout.precision(2);
 	cout << myTeacher.GetSalaryOf(myTeacher);
 	cout.unsetf(ios::fixed);
-
-	/*
-	cout << "\n------Faculty class----------\n";
-	cout << "-------Init method-------\n";
-	Faculty myFaculty;
-	if (myFaculty.Init("FoHS", 180, 145, 35, 40, 20, 5, 70));
-		cout << "error\n";
-	else
-		myFaculty.Display();
 	*/
+	
+	cout << "\n------Faculty class----------\n";
+	cout << "------Constructors-------" << endl;
+	Faculty faculty1;
+	faculty1.Display();
+	Faculty faculty2("FoMS");
+	faculty2.Display();
+	Faculty faculty3("FoMS", 200, 150, 50, 30, 20, 10, 20);
+	faculty3.Display();
+
+	cout << endl << "------Constructors of dynamic-------" << endl;
+	Faculty* dynamicFaculty1 = new Faculty();
+	dynamicFaculty1->Display();
+	Faculty* dynamicFaculty2 = new Faculty("FoMS");
+	dynamicFaculty2->Display();
+	Faculty* dynamicFaculty3 = new Faculty("FoMS", 200, 150, 50, 30, 20, 10, 20);
+	dynamicFaculty3->Display();
+	
+	cout << endl << "-----Array of objects with constructor----" << endl;
+	Faculty arrayFaculty[3] = {filler = "FoHS", filler = "FoMS", filler = "FoIT"};
+	for (int i = 0; i < 3; i++)
+		arrayFaculty[i].Display();
+
+	cout << "-----Copy Constructor-----\n";
+	cout << "Origin object:\n";
+	faculty3.Display();
+	cout << "\n Copied object:\n";
+	Faculty copyFaculty = faculty3;
+	copyFaculty.Display();
 	/*
 	cout << "\n------Read method------\n";
 	if (myFaculty.Read())

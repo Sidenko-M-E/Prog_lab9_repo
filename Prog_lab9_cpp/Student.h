@@ -22,7 +22,10 @@ public:
 	string GetGroup();
 	string GetFacultyName();
 
-	bool Init(int bufCourse, string bufEduProg, string bufGroup, string bufFacultyName, Human bufHuman);
+	Student();
+	Student(Human bufHuman);
+	Student(int bufCourse, string bufEduProg, string bufGroup, string bufFacultyName, Human bufHuman);
+
 	bool Read();
 	void Display();
 };

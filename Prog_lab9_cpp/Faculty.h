@@ -44,10 +44,14 @@ public:
 	void IsHavingEnoughCandidates(bool *result);
 	void IsHavingEnoughCandidates(bool &result);
 
-	bool Init(string bufFacultyName, int studentsQuantity, 
-		int bachelorsQuantity, int mastersQuantity, 
-		int teachersQuantity, int candidatesQuantity, 
+	Faculty();
+	Faculty(string bufFacultyName);
+	Faculty(string bufFacultyName, int studentsQuantity,
+		int bachelorsQuantity, int mastersQuantity,
+		int teachersQuantity, int candidatesQuantity,
 		int doctorsQuanity, int discpilinesQuantity);
+	Faculty(const Faculty& bufFaculty);
+
 	bool Read();
 	void Display();
 };

@@ -18,7 +18,11 @@ public:
 	string GetName();
 	string GetPatronymic();
 
-	bool Init(string bufSurname, string bufName, string bufPatronymic);
+	Fio();
+	Fio(string bufSurname);
+	Fio(string bufSurname, string bufName, string bufPatronymic);
+
+
 	bool Read();
 	void Display();
 };

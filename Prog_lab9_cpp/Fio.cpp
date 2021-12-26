@@ -65,18 +65,35 @@ string Fio::GetPatronymic()
 	return (patronymic);
 }
 
-bool Fio::Init(string bufSurname, string bufName, string bufPatronymic)
+Fio::Fio()
 {
+	surname = "unstated";
+	name = "unstated";
+	patronymic = "unstated";
+}
+
+Fio::Fio(string bufSurname)
+{
+	surname = "unstated";
+	name = "unstated";
+	patronymic = "unstated";
+
+	SetSurname(bufSurname);
+}
+
+Fio::Fio(string bufSurname, string bufName, string bufPatronymic)
+{
+	surname = "unstated";
+	name = "unstated";
+	patronymic = "unstated";
+
 	Fio check;
 
-	if (check.SetSurname(bufSurname) || check.SetName(bufName) || check.SetPatronymic(bufPatronymic))
-		return (true);
-	else
+	if (!(check.SetSurname(bufSurname) || check.SetName(bufName) || check.SetPatronymic(bufPatronymic)))
 	{
-		SetSurname(bufSurname);
-		SetName(bufName);
-		SetPatronymic(bufPatronymic);
-		return (false);
+		surname = bufSurname;
+		name = bufName;
+		patronymic = bufPatronymic;
 	}
 }
 
@@ -100,9 +117,9 @@ bool Fio::Read()
 	if (check.SetPatronymic(bufString))
 		return (true);
 
-	SetSurname(check.GetSurname());
-	SetName(check.GetName());
-	SetPatronymic(check.GetPatronymic());
+	surname = check.GetSurname();
+	name = check.GetName();
+	patronymic = check.GetPatronymic();
 	return (false);
 }
 

@@ -116,21 +116,34 @@ double Teacher::GetSalaryOf(Teacher& bufTeacher)
 double Teacher::baseSalary = 23456.78;
 
 
-bool Teacher::Init(int bufWorkExp, string bufDegree, string bufFacultyName, Human bufHuman)
+Teacher::Teacher()
+{
+	workExp = 0;
+	degree = "unstated";
+	facultyName = "unstated";
+}
+
+Teacher::Teacher(Human bufHuman)
+{
+	workExp = 0;
+	degree = "unstated";
+	facultyName = "unstated";
+	humanField = bufHuman;
+}
+
+Teacher::Teacher(int bufWorkExp, string bufDegree, string bufFacultyName, Human bufHuman)
 {
 	Teacher check;
 
-	if (check.SetWorkExp(bufWorkExp) || check.SetDegree(bufDegree) || check.SetFacultyName(bufFacultyName))
-		return (true);
-	else
+	if (!(check.SetWorkExp(bufWorkExp) || check.SetDegree(bufDegree) || check.SetFacultyName(bufFacultyName)))
 	{
-		SetWorkExp(bufWorkExp);
-		SetDegree(bufDegree);
-		SetFacultyName(bufFacultyName);
+		workExp = bufWorkExp;
+		degree = bufDegree;
+		facultyName = bufFacultyName;
 		humanField = bufHuman;
-		return (false);
 	}
 }
+
 
 bool Teacher::Read()
 {
@@ -157,8 +170,10 @@ bool Teacher::Read()
 	if (check.humanField.Read())
 		return (true);
 
-	Init(check.GetWorkExp(), check.GetDegree(), 
-		check.GetFacultyName(), check.humanField);
+	workExp = check.GetWorkExp();
+	degree = check.GetDegree();
+	facultyName = check.GetDegree();
+	humanField = check.humanField;
 	return(false);
 }
 
