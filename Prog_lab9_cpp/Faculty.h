@@ -1,4 +1,5 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include <string>
 using namespace std;
 
@@ -6,7 +7,7 @@ using namespace std;
 class Faculty
 {
 private:
-	string facultyName;
+	char* facultyName;
 	int quantityOfStudents;
 	int quantityOfBachelors;
 	int quantityOfMasters;
@@ -51,6 +52,7 @@ public:
 		int teachersQuantity, int candidatesQuantity,
 		int doctorsQuanity, int discpilinesQuantity);
 	Faculty(const Faculty& bufFaculty);
+	Faculty& operator= (Faculty& bufFaculty);
 
 	bool Read();
 	void Display();

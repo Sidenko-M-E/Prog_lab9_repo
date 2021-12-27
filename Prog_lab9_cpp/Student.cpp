@@ -80,6 +80,7 @@ string Student::GetFacultyName()
 	return (facultyName);
 }
 
+
 Student::Student()
 {
 	course = 0;
@@ -94,7 +95,6 @@ Student::Student(Human bufHuman)
 	eduProg = "unstated";
 	group = "unstated";
 	facultyName = "unstated";
-	humanField = bufHuman;
 }
 
 Student::Student(int bufCourse, string bufEduProg, string bufGroup, string bufFacultyName, Human bufHuman)
@@ -108,7 +108,6 @@ Student::Student(int bufCourse, string bufEduProg, string bufGroup, string bufFa
 		eduProg = bufEduProg;
 		group = bufGroup;
 		facultyName = bufFacultyName;
-		humanField = bufHuman;
 	}
 }
 

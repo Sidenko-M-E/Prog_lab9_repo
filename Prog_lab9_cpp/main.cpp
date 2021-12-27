@@ -215,10 +215,31 @@ int main()
 
 	cout << "-----Copy Constructor-----\n";
 	cout << "Origin object:\n";
-	faculty3.Display();
+	faculty2.Display();
 	cout << "\n Copied object:\n";
-	Faculty copyFaculty = faculty3;
+	Faculty copyFaculty = faculty2;
 	copyFaculty.Display();
+	cout << "\nChange facultyName in origin object to FoHS:\n";
+	faculty2.SetFacultyName("FoHS");
+	cout << "State of copied object has changed:\n";
+	copyFaculty.Display();
+	cout << "It's a shallow copy\n";
+
+	cout << "-----Overloading assignment operator-----\n";
+	cout << "Origin object:\n";
+	dynamicFaculty2->Display();
+	cout << "\nAssignment object:\n";
+	dynamicFaculty3->Display();
+	cout << "\nResult of assignment\n";
+	*dynamicFaculty2 = *dynamicFaculty3;
+	dynamicFaculty2->Display();
+	cout << "\nChange facultyName in assignment object to FoHS:\n";
+	dynamicFaculty3->SetFacultyName("FoHS");
+	cout << "\nState of origin object hasn't changed:\n";
+	dynamicFaculty2->Display();
+	cout << "It's a deep copy\n";
+
+
 	/*
 	cout << "\n------Read method------\n";
 	if (myFaculty.Read())

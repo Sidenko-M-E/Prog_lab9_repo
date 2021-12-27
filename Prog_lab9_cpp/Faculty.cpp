@@ -13,8 +13,10 @@ bool Faculty::SetFacultyName(string bufString)
 		if (bufString.find(symb) != (-1))
 			return (true);
 	}
-
-	facultyName = bufString;
+	
+	//code was commented for shallow copy demonstation
+	//facultyName = new char[strlen(bufString.c_str()) + 1];
+	strcpy(facultyName, bufString.c_str());
 	return (false);
 }
 
@@ -125,7 +127,7 @@ bool Faculty::SetTeachersInfo(int allQuantity, int candidatesQuantity, int docto
 
 string Faculty::GetFacultyName()
 {
-	return (facultyName);
+	return (string(facultyName));
 }
 
 int Faculty::GetQuantityOfStudents()
@@ -204,7 +206,8 @@ void Faculty::IsHavingEnoughCandidates(bool &result)
 
 Faculty::Faculty()
 {
-	facultyName = "unstated";
+	facultyName  = new char[strlen("unstated") + 1];
+	strcpy(facultyName, "unstated");
 	quantityOfStudents = 0;
 	quantityOfBachelors = 0;
 	quantityOfMasters = 0;
@@ -216,7 +219,8 @@ Faculty::Faculty()
 
 Faculty::Faculty(string bufFacultyName)
 {
-	facultyName = bufFacultyName;
+	facultyName = new char[strlen(bufFacultyName.c_str()) + 1];
+	strcpy(facultyName, bufFacultyName.c_str());
 	quantityOfStudents = 0;
 	quantityOfBachelors = 0;
 	quantityOfMasters = 0;
@@ -236,7 +240,8 @@ Faculty::Faculty(string bufFacultyName, int studentsQuantity, int bachelorsQuant
 		check.SetQuantityOfTeachers(teachersQuantity) || check.SetQuantityOfCandidates(candidatesQuantity) ||
 		check.SetQuantityOfDoctors(doctorsQuanity) || check.SetQuantityOfDisciplines(discpilinesQuantity)))
 	{
-		facultyName = bufFacultyName;
+		facultyName = new char[strlen(bufFacultyName.c_str()) + 1];
+		strcpy(facultyName, bufFacultyName.c_str());
 		quantityOfStudents = studentsQuantity;
 		quantityOfBachelors = bachelorsQuantity;
 		quantityOfMasters = mastersQuantity;
@@ -257,6 +262,25 @@ Faculty::Faculty(const Faculty& bufFaculty)
 	quantityOfCandidates = bufFaculty.quantityOfCandidates*2;
 	quantityOfDoctors = bufFaculty.quantityOfDoctors*2;
 	quantityOfDisciplines = bufFaculty.quantityOfDisciplines*2;
+}
+
+Faculty& Faculty::operator=(Faculty& bufFaculty)
+{
+	if (facultyName)
+		delete facultyName;
+	facultyName = NULL;
+
+	quantityOfStudents = bufFaculty.quantityOfStudents;
+	quantityOfBachelors = bufFaculty.quantityOfBachelors;
+	quantityOfMasters = bufFaculty.quantityOfMasters;
+	quantityOfTeachers = bufFaculty.quantityOfTeachers;
+	quantityOfCandidates = bufFaculty.quantityOfCandidates;
+	quantityOfDoctors = bufFaculty.quantityOfDoctors;
+	quantityOfDisciplines = bufFaculty.quantityOfDisciplines;
+
+	facultyName = new char[strlen(bufFaculty.GetFacultyName().c_str()) + 1];
+	strcpy(facultyName, bufFaculty.GetFacultyName().c_str());
+	return (*this);
 }
 
 
@@ -305,8 +329,9 @@ bool Faculty::Read()
 	cin >> bufInt;
 	if (check.SetQuantityOfDisciplines(bufInt))
 		return (true);
-															
-	facultyName = check.GetFacultyName();
+						
+	facultyName = new char[strlen(check.GetFacultyName().c_str()) + 1];
+	strcpy(facultyName, check.GetFacultyName().c_str());
 	quantityOfStudents = check.GetQuantityOfStudents();
 	quantityOfBachelors = check.GetQuantityOfBachelors();
 	quantityOfMasters = check.GetQuantityOfMasters();
