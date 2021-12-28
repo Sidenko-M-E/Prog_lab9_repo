@@ -40,14 +40,14 @@ namespace Prog_lab6
 			SetFacultyName(bufFacultyName);
 		}
 		public Faculty(string bufFacultyName, int studentsQuantity, int bachelorsQuantity, int mastersQuantity,
-	int teachersQuantity, int candidatesQuantity, int doctorsQuanity, int discpilinesQuantity)
+	int teachersQuantity, int candidatesQuantity, int doctorsQuantity, int disciplinesQuantity)
 		{
 			Faculty check = new Faculty();
 
 			if (check.SetFacultyName(bufFacultyName) || check.SetQuantityOfStudents(studentsQuantity) ||
 				check.SetQuantityOfBachelors(bachelorsQuantity) || check.SetQuantityOfMasters(mastersQuantity) ||
 				check.SetQuantityOfTeachers(teachersQuantity) || check.SetQuantityOfCandidates(candidatesQuantity) ||
-				check.SetQuantityOfDoctors(doctorsQuanity) || check.SetQuantityOfDisciplines(discpilinesQuantity))
+				check.SetQuantityOfDoctors(doctorsQuantity) || check.SetQuantityOfDisciplines(disciplinesQuantity))
 			{
 				facultyName = "unstated";
 				quantityOfStudents = 0;
@@ -66,8 +66,8 @@ namespace Prog_lab6
 				quantityOfMasters = mastersQuantity;
 				quantityOfTeachers = teachersQuantity;
 				quantityOfCandidates = candidatesQuantity;
-				quantityOfDoctors = doctorsQuanity;
-				quantityOfDisciplines = discpilinesQuantity;
+				quantityOfDoctors = doctorsQuantity;
+				quantityOfDisciplines = disciplinesQuantity;
 			}
 		}
 
