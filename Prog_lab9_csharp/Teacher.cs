@@ -33,7 +33,7 @@ namespace Prog_lab6
 		private int workExp;
 		private string degree;
 		private string facultyName;
-		public Human humanField = new Human();
+		public Human humanField;
 
 		//Properties
 		public int WorkExp
@@ -114,6 +114,43 @@ namespace Prog_lab6
 			}
 		}
 
+		//Constructors
+		public Teacher()
+		{
+			workExp = 0;
+			degree = "unstated";
+			facultyName = "unstated";
+			humanField = new Human();
+		}
+		public Teacher(Human bufHuman)
+		{
+			workExp = 0;
+			degree = "unstated";
+			facultyName = "unstated";
+			humanField = new Human(bufHuman.GetId(), bufHuman.GetAge(),
+				bufHuman.GetHeight(), bufHuman.GetWeight(),
+				bufHuman.GetGender(), bufHuman.fioField);
+		}
+		public Teacher(int bufWorkExp, string bufDegree, string bufFacultyName, Human bufHuman)
+		{
+			Teacher check = new Teacher();
+
+			if (check.SetWorkExp(bufWorkExp) || check.SetDegree(bufDegree) || check.SetFacultyName(bufFacultyName))
+			{
+				workExp = 0;
+				degree = "unstated";
+				facultyName = "unstated";
+				humanField = new Human();
+			}
+			else
+			{
+				SetWorkExp(bufWorkExp);
+				SetDegree(bufDegree);
+				SetFacultyName(bufFacultyName);
+				humanField = new Human(bufHuman.GetId(), bufHuman.GetAge(),
+				bufHuman.GetHeight(), bufHuman.GetWeight(), bufHuman.GetGender(), bufHuman.fioField);
+			}
+		}
 
 		//Methods
 		public bool SetWorkExp(int buf)
@@ -158,7 +195,24 @@ namespace Prog_lab6
 			facultyName = new string (bufString.ToCharArray());
 			return (false);
 		}
-		
+		public bool SetAll(int bufWorkExp, string bufDegree, string bufFacultyName, Human bufHuman)
+		{
+			Teacher check = new Teacher();
+
+			if (check.SetWorkExp(bufWorkExp) || check.SetDegree(bufDegree) || check.SetFacultyName(bufFacultyName))
+				return (true);
+			else
+			{
+				SetWorkExp(bufWorkExp);
+				SetDegree(bufDegree);
+				SetFacultyName(bufFacultyName);
+				humanField.SetAll(bufHuman.GetId(), bufHuman.GetAge(),
+				bufHuman.GetHeight(), bufHuman.GetWeight(), 
+				bufHuman.GetGender(), bufHuman.fioField);
+				return (false);
+			}
+		}
+
 		public int GetWorkExp()
 		{ return (workExp); }
 		public string GetDegree()
@@ -192,22 +246,6 @@ namespace Prog_lab6
 			return (operatorTeacher);
 		}
 
-		public bool Init(int bufWorkExp, string bufDegree, string bufFacultyName, Human bufHuman)
-		{
-			Teacher check = new Teacher();
-
-			if (check.SetWorkExp(bufWorkExp) || check.SetDegree(bufDegree) || check.SetFacultyName(bufFacultyName))
-				return (true);
-			else
-			{
-				this.SetWorkExp(bufWorkExp);
-				this.SetDegree(bufDegree);
-				this.SetFacultyName(bufFacultyName);
-				this.humanField.Init(bufHuman.GetId(), bufHuman.GetAge(),
-				bufHuman.GetHeight(), bufHuman.GetWeight(), bufHuman.GetGender(), bufHuman.fioField);
-				return (false);
-			}
-		}
 		public bool Read()
 		{
 			Teacher check = new Teacher();
@@ -234,7 +272,7 @@ namespace Prog_lab6
 				return (true);
 
 
-			this.Init(check.GetWorkExp(), check.GetDegree(),
+			this.SetAll(check.GetWorkExp(), check.GetDegree(),
 			check.GetFacultyName(), check.humanField);
 			return (false);
 

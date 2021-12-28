@@ -9,8 +9,7 @@ namespace Prog_lab6
 		private string eduProg;
 		private string group;
 		private string facultyName;
-		public Human humanField = new Human();
-
+		public Human humanField;
 
 		//Properties
 		public int Course 
@@ -118,6 +117,49 @@ namespace Prog_lab6
 			}
 		}
 
+		//Constructors
+		public Student()
+		{
+			course = 0;
+			eduProg = "unstated";
+			group = "unstated";
+			facultyName = "unstated";
+			humanField = new Human();
+		}
+		public Student(Human bufHuman)
+		{
+			course = 0;
+			eduProg = "unstated";
+			group = "unstated";
+			facultyName = "unstated";
+			humanField = new Human(bufHuman.GetId(), bufHuman.GetAge(), 
+				bufHuman.GetHeight(), bufHuman.GetWeight(), 
+				bufHuman.GetGender(), bufHuman.fioField);
+		}
+		public Student(int bufCourse, string bufEduProg, string bufGroup, string bufFacultyName, Human bufHuman)
+		{
+			Student check = new Student();
+
+			if (check.SetCourse(bufCourse) || check.SetEduProg(bufEduProg) || check.SetGroup(bufGroup) ||
+				check.SetFacultyName(bufFacultyName))
+			{
+				course = 0;
+				eduProg = "unstated";
+				group = "unstated";
+				facultyName = "unstated";
+				humanField = new Human();
+			}
+			else
+			{
+				SetCourse(bufCourse);
+				SetEduProg(bufEduProg);
+				SetGroup(bufGroup);
+				SetFacultyName(bufFacultyName);
+				humanField = new Human(bufHuman.GetId(), bufHuman.GetAge(),
+				bufHuman.GetHeight(), bufHuman.GetWeight(), 
+				bufHuman.GetGender(), bufHuman.fioField);
+			}
+		}
 
 		//Methods
 		public bool SetCourse(int buf)
@@ -130,7 +172,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetEduProg(string bufString)
 		{
 			if (string.IsNullOrEmpty(bufString))
@@ -147,7 +188,6 @@ namespace Prog_lab6
 			eduProg = new string (bufString.ToCharArray());
 			return (false);
 		}
-
 		public bool SetGroup(string bufString)
 		{
 			if (string.IsNullOrEmpty(bufString))
@@ -164,7 +204,6 @@ namespace Prog_lab6
 			group = new string (bufString.ToCharArray());
 			return (false);
 		}
-
 		public bool SetFacultyName(string bufString)
 		{
 			if (string.IsNullOrEmpty(bufString))
@@ -181,29 +220,7 @@ namespace Prog_lab6
 			facultyName = new string (bufString.ToCharArray());
 			return (false);
 		}
-
-		public int GetCourse()
-		{ return (course); }
-
-		public string GetEduProg()
-		{
-			string outputString = new string(eduProg.ToCharArray());
-			return (outputString);
-		}
-
-		public string GetGroup()
-		{
-			string outputString = new string (group.ToCharArray());
-			return (outputString);
-		}
-
-		public string GetFacultyName()
-		{
-			string outputString = new string (facultyName.ToCharArray());
-			return (outputString);
-		}
-
-		public bool Init(int bufCourse, string bufEduProg, string bufGroup, string bufFacultyName, Human bufHuman)
+		public bool SetAll(int bufCourse, string bufEduProg, string bufGroup, string bufFacultyName, Human bufHuman)
 		{
 			Student check = new Student();
 
@@ -212,14 +229,32 @@ namespace Prog_lab6
 				return (true);
 			else
 			{
-				this.SetCourse(bufCourse);
-				this.SetEduProg(bufEduProg);
-				this.SetGroup(bufGroup);
-				this.SetFacultyName(bufFacultyName);
-				this.humanField.Init(bufHuman.GetId(), bufHuman.GetAge(),
+				SetCourse(bufCourse);
+				SetEduProg(bufEduProg);
+				SetGroup(bufGroup);
+				SetFacultyName(bufFacultyName);
+				humanField.SetAll(bufHuman.GetId(), bufHuman.GetAge(),
 				bufHuman.GetHeight(), bufHuman.GetWeight(), bufHuman.GetGender(), bufHuman.fioField);
 				return (false);
 			}
+		}
+
+		public int GetCourse()
+		{ return (course); }
+		public string GetEduProg()
+		{
+			string outputString = new string(eduProg.ToCharArray());
+			return (outputString);
+		}
+		public string GetGroup()
+		{
+			string outputString = new string (group.ToCharArray());
+			return (outputString);
+		}
+		public string GetFacultyName()
+		{
+			string outputString = new string (facultyName.ToCharArray());
+			return (outputString);
 		}
 
 		public bool Read()
@@ -253,11 +288,10 @@ namespace Prog_lab6
 				return (true);
 			
 
-			this.Init(check.GetCourse(), check.GetEduProg(), check.GetGroup(),
+			SetAll(check.GetCourse(), check.GetEduProg(), check.GetGroup(),
 			check.GetFacultyName(), check.humanField);
 			return (false);
 		}
-
 		public void Display()
 		{
 			Console.Write("course: {0}\n", course);

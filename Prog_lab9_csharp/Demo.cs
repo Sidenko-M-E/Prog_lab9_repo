@@ -6,15 +6,24 @@ namespace Prog_lab6
 	{
 		static void Main(string[] args)
 		{
-			//Console.Write("--------Fio class--------\n");
-			//Console.Write("------Init method-------\n");
-			//Fio myFio = new Fio();
-			/*
-			if (myFio.Init("Sidenko", "Matvey", "Evgenievich"))
-				Console.Write("error\n");
-			else
-				myFio.Display();
+			Console.Write("--------Fio class--------\n");
+			Console.Write("------Constructors-------\n");
+			Fio fio1 = new Fio();
+			fio1.Display();
+			Fio fio2 = new Fio("Popov");
+			fio2.Display();
+			Fio fio3 = new Fio("Ivanov", "Sergey", "Ivanovich");
+			fio3.Display();
 
+			Console.Write("\n-----Array of objects with constructor----\n");
+			Fio[] arrFio = new Fio[3];
+			for (int i = 0; i < 3; i++)
+			{ 
+				arrFio[i] = new Fio("stated");
+				arrFio[i].Display();
+			}
+
+			/*
 			Console.Write("\n---Read method---\n");
 			if (!myFio.Read())
 				myFio.Display();
@@ -67,15 +76,23 @@ namespace Prog_lab6
 			demoFio.Display();
 			*/
 
-			//Console.Write("\n--------Human class--------\n");
-			//Console.Write("------init method-------\n");
-			//Human myHuman = new Human();
-			/*
-			if (myHuman.Init(1984, 45, 193, 90.87, 'M', myFio))
-				Console.Write("error\n");
-			else
-				myHuman.Display();
+			Console.Write("\n--------Human class--------\n");
+			Console.Write("------Constructors-------\n");
+			Human human1 = new Human();
+			human1.Display();
+			Human human2 = new Human(13);
+			human2.Display();
+			Human human3 = new Human(13, 45, 190, 90, 'M', fio3);
+			human3.Display();
 
+			Console.Write("\n-----Array of objects with constructor----\n");
+			Human[] arrHuman = new Human[3];
+			for (int i = 0; i < 3; i++)
+			{
+				arrHuman[i] = new Human(i);
+				arrHuman[i].Display();
+			}
+			/*
 			Console.Write("\n------Read method------\n");
 			if (myHuman.Read())
 				Console.Write("error\n");
@@ -106,7 +123,22 @@ namespace Prog_lab6
 			*/
 
 
-			//Console.Write("\n--------Student class--------\n");
+			Console.Write("\n--------Student class--------\n");
+			Console.Write("------Constructors-------\n");
+			Student student1 = new Student();
+			student1.Display();
+			Student student2 = new Student(human2);
+			student2.Display();
+			Student student3 = new Student(2, "Bachelor", "PI-03", "FoIT", human3);
+			student3.Display();
+
+			Console.Write("\n-----Array of objects with constructor----\n");
+			Student[] arrStudent = new Student[3];
+			for (int i = 0; i < 3; i++)
+			{
+				arrStudent[i] = new Student(human2);
+				arrStudent[i].Display();
+			}
 			//Console.Write("-------init method-------\n");
 			//Student myStudent = new Student();
 			/*
@@ -145,7 +177,22 @@ namespace Prog_lab6
 			*/
 
 
-			//Console.Write("\n--------Teacher class--------\n");
+			Console.Write("\n--------Teacher class--------\n");
+			Console.Write("------Constructors-------\n");
+			Teacher teacher1 = new Teacher();
+			teacher1.Display();
+			Teacher teacher2 = new Teacher(human2);
+			teacher2.Display();
+			Teacher teacher3 = new Teacher(18, "Candidate of Mathemetical Sciences", "FoMS", human3);
+			teacher3.Display();
+
+			Console.Write("\n-----Array of objects with constructor----\n");
+			Teacher[] arrTeacher = new Teacher[3];
+			for (int i = 0; i < 3; i++)
+			{
+				arrTeacher[i] = new Teacher(human2);
+				arrTeacher[i].Display();
+			}
 			//Console.Write("-------init method-------\n");
 			//Teacher myTeacher = new Teacher();
 			/*
@@ -196,7 +243,7 @@ namespace Prog_lab6
 			++demoTeacher;
 			demoTeacher.Display();
 			*/
-
+			/*
 			Console.Write("\nStatic method demo\n");
 			Fio myFio = new Fio();
 			myFio.Init("Popov", "Alexandr", "Dmitrievich");
@@ -208,9 +255,24 @@ namespace Prog_lab6
 			myTeacher.Display();
 			Console.Write("\nAnd his salary is...\n");
 			Console.Write(Teacher.GetSalaryOf(myTeacher));
+			*/
 
+			Console.Write("\n--------Faculty class--------\n");
+			Console.Write("------Constructors-------\n");
+			Faculty faculty1 = new Faculty();
+			faculty1.Display();
+			Faculty faculty2 = new Faculty("FoMS");
+			faculty2.Display();
+			Faculty faculty3 = new Faculty("FoMS", 200, 180, 20, 40, 30, 10, 30);
+			faculty3.Display();
 
-			//Console.Write("\n--------Faculty class--------\n");
+			Console.Write("\n-----Array of objects with constructor----\n");
+			Faculty[] arrFaculty = new Faculty[3];
+			for (int i = 0; i < 3; i++)
+			{
+				arrFaculty[i] = new Faculty("stated");
+				arrFaculty[i].Display();
+			}
 			//Console.Write("-------Init method-------\n");
 			//Faculty myFaculty = new Faculty();
 			/*

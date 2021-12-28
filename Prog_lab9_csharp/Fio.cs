@@ -93,8 +93,54 @@ namespace Prog_lab6
 			}
 		}
 
+		//Constructors
+		public Fio()
+		{
+			surname = "unstated";
+			name = "unstated";
+			patronymic = "unstated";
+		}
+		public Fio(string bufSurname)
+		{
+			surname = "unstated";
+			name = "unstated";
+			patronymic = "unstated";
+
+			SetSurname(bufSurname);
+		}
+		public Fio(string bufSurname, string bufName, string bufPatronymic)
+		{
+			Fio check = new Fio();
+
+			if (check.SetSurname(bufSurname) || check.SetName(bufName) || check.SetPatronymic(bufPatronymic))
+			{
+				surname = "unstated";
+				name = "unstated";
+				patronymic = "unstated";
+			}
+			else
+			{
+				SetSurname(bufSurname);
+				SetName(bufName);
+				SetPatronymic(bufPatronymic);
+			}
+		}
 
 		//Methods
+		public bool SetAll(string bufSurname, string bufName, string bufPatronymic)
+		{
+			Fio check = new Fio();
+
+			if (check.SetSurname(bufSurname) || check.SetName(bufName) || check.SetPatronymic(bufPatronymic))
+				return (true);
+			else
+			{
+				this.SetSurname(bufSurname);
+				this.SetName(bufName);
+				this.SetPatronymic(bufPatronymic);
+				return (false);
+			}
+		}
 		public bool SetSurname(string bufString)
 		{
 			if (string.IsNullOrEmpty(bufString))
@@ -111,7 +157,6 @@ namespace Prog_lab6
 			surname = new string(bufString.ToCharArray());
 			return (false);
 		}
-
 		public bool SetName(string bufString)
 		{
 			if (string.IsNullOrEmpty(bufString))
@@ -128,7 +173,6 @@ namespace Prog_lab6
 			name = new string(bufString.ToCharArray());
 			return (false);
 		}
-
 		public bool SetPatronymic(string bufString)
 		{
 			if (string.IsNullOrEmpty(bufString))
@@ -151,32 +195,15 @@ namespace Prog_lab6
 			string outputString = new string(surname.ToCharArray());
 			return (outputString);
 		}
-
 		public string GetName()
 		{
 			string outputString = new string(name.ToCharArray());
 			return (outputString);
 		}
-
 		public string GetPatronymic()
 		{
 			string outputString = new string(patronymic.ToCharArray());
 			return (outputString);
-		}
-
-		public bool Init(string bufSurname, string bufName, string bufPatronymic)
-		{
-			Fio check = new Fio();
-
-			if (check.SetSurname(bufSurname) || check.SetName(bufName) || check.SetPatronymic(bufPatronymic))
-				return (true);
-			else
-			{
-				this.SetSurname(bufSurname);
-				this.SetName(bufName);
-				this.SetPatronymic(bufPatronymic);
-				return (false);
-			}
 		}
 
 		public bool Read()
@@ -198,12 +225,11 @@ namespace Prog_lab6
 				return (true);
 
 
-			this.SetSurname(check.GetSurname());
-			this.SetName(check.GetName());
-			this.SetPatronymic(check.GetPatronymic());
+			SetSurname(check.GetSurname());
+			SetName(check.GetName());
+			SetPatronymic(check.GetPatronymic());
 			return (false);
 		}
-
 		public void Display()
 		{
 			Console.Write("FIO: {0} {1} {2}\n", surname, name, patronymic);

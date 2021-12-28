@@ -11,8 +11,7 @@ namespace Prog_lab6
 		private int height;
 		private double weight;
 		private char gender;
-		public Fio fioField = new Fio();
-
+		public Fio fioField;
 
 		//Properties
 		public int Id
@@ -86,8 +85,53 @@ namespace Prog_lab6
 			{
 				fioField = value;
 			}
-		} 
+		}
 
+		//Constructors
+		public Human()
+		{
+			id = 0;
+			age = 0;
+			height = 40;
+			weight = 0;
+			gender = 'M';
+			fioField = new Fio();
+		}
+		public Human(int bufId)
+		{
+			id = 0;
+			age = 0;
+			height = 40;
+			weight = 0;
+			gender = 'M';
+			fioField = new Fio();
+
+			SetId(bufId);
+		}
+		public Human(int bufId, int bufAge, int bufHeight, double bufWeight, char bufGender, Fio bufFio)
+		{
+			Human check = new Human();
+
+			if (check.SetId(bufId) || check.SetAge(bufAge) || check.SetHeight(bufHeight) ||
+				check.SetWeight(bufWeight) || check.SetGender(bufGender))
+			{
+				id = 0;
+				age = 0;
+				height = 40;
+				weight = 0;
+				gender = 'M';
+				fioField = new Fio();
+			}
+			else
+			{
+				SetId(bufId);
+				SetAge(bufAge);
+				SetHeight(bufHeight);
+				SetWeight(bufWeight);
+				SetGender(bufGender);
+				fioField = new Fio(bufFio.GetSurname(), bufFio.GetName(), bufFio.GetPatronymic());
+			}
+		}
 
 		//Methods
 		public bool SetId(int buf)
@@ -100,7 +144,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetAge(int buf)
 		{
 			if (buf < 0 || buf > 200)
@@ -111,7 +154,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetHeight(int buf)
 		{
 			if (buf < 40 || buf > 300)
@@ -122,7 +164,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetWeight(double buf)
 		{
 			//round *.* format to *.1 format 
@@ -135,7 +176,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetGender(char buf)
 		{
 			if (buf == 'M' || buf == 'F')
@@ -146,23 +186,7 @@ namespace Prog_lab6
 			else
 				return (true);
 		}
-
-		public int GetId()
-		{ return (id); }
-
-		public int GetAge()
-		{ return (age); }
-
-		public int GetHeight()
-		{ return (height); }
-
-		public double GetWeight()
-		{ return (weight); }
-
-		public char GetGender()
-		{ return (gender); }
-
-		public bool Init(int bufId, int bufAge, int bufHeight, double bufWeight, char bufGender, Fio bufFio)
+		public bool SetAll(int bufId, int bufAge, int bufHeight, double bufWeight, char bufGender, Fio bufFio)
 		{
 			Human check = new Human();
 
@@ -171,15 +195,26 @@ namespace Prog_lab6
 				return (true);
 			else
 			{
-				this.SetId(check.GetId());
-				this.SetAge(check.GetAge());
-				this.SetHeight(check.GetHeight());
-				this.SetWeight(check.GetWeight());
-				this.SetGender(check.GetGender());
-				this.fioField.Init(bufFio.GetSurname(), bufFio.GetName(), bufFio.GetPatronymic());
+				SetId(check.GetId());
+				SetAge(check.GetAge());
+				SetHeight(check.GetHeight());
+				SetWeight(check.GetWeight());
+				SetGender(check.GetGender());
+				fioField.SetAll(bufFio.GetSurname(), bufFio.GetName(), bufFio.GetPatronymic());
 				return (false);
 			}
 		}
+
+		public int GetId()
+		{ return (id); }
+		public int GetAge()
+		{ return (age); }
+		public int GetHeight()
+		{ return (height); }
+		public double GetWeight()
+		{ return (weight); }
+		public char GetGender()
+		{ return (gender); }
 
 		public bool Read()
 		{
@@ -227,10 +262,11 @@ namespace Prog_lab6
 				return (true);
 
 
-			this.Init(check.GetId(), check.GetAge(), check.GetHeight(), check.GetWeight(), check.GetGender(), check.fioField);
+			SetAll(check.GetId(), check.GetAge(), 
+				check.GetHeight(), check.GetWeight(), 
+				check.GetGender(), check.fioField);
 			return (false);
 		}
-
 		public void Display()
 		{
 			Console.Write("id: {0}\n", id);

@@ -14,6 +14,62 @@ namespace Prog_lab6
 		private int quantityOfDoctors;
 		private int quantityOfDisciplines;
 
+		//Constructors
+		public Faculty()
+		{
+			facultyName = "unstated";
+			quantityOfStudents = 0;
+			quantityOfBachelors = 0;
+			quantityOfMasters = 0;
+			quantityOfTeachers = 0;
+			quantityOfCandidates = 0;
+			quantityOfDoctors = 0;
+			quantityOfDisciplines = 0;
+		}
+		public Faculty(string bufFacultyName)
+		{
+			facultyName = "unstated";
+			quantityOfStudents = 0;
+			quantityOfBachelors = 0;
+			quantityOfMasters = 0;
+			quantityOfTeachers = 0;
+			quantityOfCandidates = 0;
+			quantityOfDoctors = 0;
+			quantityOfDisciplines = 0;
+
+			SetFacultyName(bufFacultyName);
+		}
+		public Faculty(string bufFacultyName, int studentsQuantity, int bachelorsQuantity, int mastersQuantity,
+	int teachersQuantity, int candidatesQuantity, int doctorsQuanity, int discpilinesQuantity)
+		{
+			Faculty check = new Faculty();
+
+			if (check.SetFacultyName(bufFacultyName) || check.SetQuantityOfStudents(studentsQuantity) ||
+				check.SetQuantityOfBachelors(bachelorsQuantity) || check.SetQuantityOfMasters(mastersQuantity) ||
+				check.SetQuantityOfTeachers(teachersQuantity) || check.SetQuantityOfCandidates(candidatesQuantity) ||
+				check.SetQuantityOfDoctors(doctorsQuanity) || check.SetQuantityOfDisciplines(discpilinesQuantity))
+			{
+				facultyName = "unstated";
+				quantityOfStudents = 0;
+				quantityOfBachelors = 0;
+				quantityOfMasters = 0;
+				quantityOfTeachers = 0;
+				quantityOfCandidates = 0;
+				quantityOfDoctors = 0;
+				quantityOfDisciplines = 0;
+			}
+			else
+			{
+				SetFacultyName(bufFacultyName);
+				quantityOfStudents = studentsQuantity;
+				quantityOfBachelors = bachelorsQuantity;
+				quantityOfMasters = mastersQuantity;
+				quantityOfTeachers = teachersQuantity;
+				quantityOfCandidates = candidatesQuantity;
+				quantityOfDoctors = doctorsQuanity;
+				quantityOfDisciplines = discpilinesQuantity;
+			}
+		}
 
 		//Properties
 		public string FacultyName 
@@ -146,7 +202,6 @@ namespace Prog_lab6
 			facultyName = new string (bufString.ToCharArray());
 			return (false);
 		}
-
 		public bool SetQuantityOfStudents(int buf)
 		{
 			if (buf < 0 || buf > 1000)
@@ -157,7 +212,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetQuantityOfBachelors(int buf)
 		{
 			if (buf < 0 || buf > 1000)
@@ -168,7 +222,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetQuantityOfMasters(int buf)
 		{
 			if (buf < 0 || buf > 1000)
@@ -179,7 +232,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetQuantityOfTeachers(int buf)
 		{
 			if (buf < 0 || buf > 100)
@@ -190,7 +242,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetQuantityOfCandidates(int buf)
 		{
 			if (buf < 0 || buf > 100)
@@ -201,7 +252,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetQuantityOfDoctors(int buf)
 		{
 			if (buf < 0 || buf > 100)
@@ -212,7 +262,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetQuantityOfDisciplines(int buf)
 		{
 			if (buf < 0 || buf > 100)
@@ -236,7 +285,6 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
 		public bool SetTeachersInfo(int allQuantity, int candidatesQuantity, int doctorsQuantity)
 		{
 			if (allQuantity < 0 || allQuantity > 100 || candidatesQuantity < 0 || candidatesQuantity > 100 || doctorsQuantity < 0 || doctorsQuantity > 100)
@@ -249,72 +297,7 @@ namespace Prog_lab6
 				return (false);
 			}
 		}
-
-
-		public string GetFacultyName()
-		{
-			string outputString = new string(facultyName.ToCharArray());
-			return (outputString);
-		}
-
-		public int GetQuantityOfStudents()
-		{return quantityOfStudents;}
-
-		public int GetQuantityOfBachelors()
-		{return quantityOfBachelors;}
-
-		public int GetQuantityOfMasters()
-		{return quantityOfMasters;}
-
-		public int GetQuantityOfTeachers()
-		{return quantityOfTeachers;}
-
-		public int GetQuantityOfCandidates()
-		{return quantityOfCandidates;}
-
-		public int GetQuantityOfDoctors()
-		{return quantityOfDoctors;}
-
-		public int GetQuantityOfDisciplines()
-		{return quantityOfDisciplines;}
-
-		//Processing methods
-		public double GetProcentOfMasters()
-		{return (((double)quantityOfMasters) / ((double)quantityOfStudents) * 100);}
-
-		public double GetProcentOfDoctors()
-		{return (((double)quantityOfDoctors) / ((double)quantityOfTeachers) * 100);}
-
-		public double GetStudToTeachRatio()
-		{return ((double)quantityOfStudents) / ((double)quantityOfTeachers);}
-		
-		public Faculty GetWithMoreCandidates(Faculty buf)
-		{
-			if (this.GetQuantityOfCandidates() >= buf.GetQuantityOfCandidates())
-				return (this);
-			else
-				return (buf);
-		}
-
-		public void IsHavingMoreStudentsThen(out int comparisonValueAndResult)
-		{
-			comparisonValueAndResult = 15;
-			if (this.GetQuantityOfTeachers() > comparisonValueAndResult)
-				comparisonValueAndResult = 1;
-			else
-				comparisonValueAndResult = 0;
-		}
-
-		public void IsHavingMoreTeachersThen(ref int comparisonValueAndResult)
-		{
-			if (this.GetQuantityOfTeachers() > comparisonValueAndResult)
-				comparisonValueAndResult = 1;
-			else
-				comparisonValueAndResult = 0;
-		}
-
-
-		public bool Init(string bufFacultyName, int studentsQuantity, int bachelorsQuantity, int mastersQuantity, int teachersQuantity, int candidatesQuantity, int doctorsQuanity, int discpilinesQuantity)
+		public bool SetAll(string bufFacultyName, int studentsQuantity, int bachelorsQuantity, int mastersQuantity, int teachersQuantity, int candidatesQuantity, int doctorsQuanity, int discpilinesQuantity)
 		{
 			Faculty check = new Faculty();
 
@@ -325,12 +308,62 @@ namespace Prog_lab6
 				return (true);
 			else
 			{
-				this.SetFacultyName(bufFacultyName);
-				this.SetStudentsInfo(studentsQuantity,bachelorsQuantity, mastersQuantity);
-				this.SetTeachersInfo(teachersQuantity, candidatesQuantity, doctorsQuanity);
-				this.SetQuantityOfDisciplines(discpilinesQuantity);
+				SetFacultyName(bufFacultyName);
+				SetStudentsInfo(studentsQuantity, bachelorsQuantity, mastersQuantity);
+				SetTeachersInfo(teachersQuantity, candidatesQuantity, doctorsQuanity);
+				SetQuantityOfDisciplines(discpilinesQuantity);
 				return (false);
 			}
+		}
+
+		public string GetFacultyName()
+		{
+			string outputString = new string(facultyName.ToCharArray());
+			return (outputString);
+		}
+		public int GetQuantityOfStudents()
+		{return quantityOfStudents;}
+		public int GetQuantityOfBachelors()
+		{return quantityOfBachelors;}
+		public int GetQuantityOfMasters()
+		{return quantityOfMasters;}
+		public int GetQuantityOfTeachers()
+		{return quantityOfTeachers;}
+		public int GetQuantityOfCandidates()
+		{return quantityOfCandidates;}
+		public int GetQuantityOfDoctors()
+		{return quantityOfDoctors;}
+		public int GetQuantityOfDisciplines()
+		{return quantityOfDisciplines;}
+
+		//Processing methods
+		public double GetProcentOfMasters()
+		{return (((double)quantityOfMasters) / ((double)quantityOfStudents) * 100);}
+		public double GetProcentOfDoctors()
+		{return (((double)quantityOfDoctors) / ((double)quantityOfTeachers) * 100);}
+		public double GetStudToTeachRatio()
+		{return ((double)quantityOfStudents) / ((double)quantityOfTeachers);}
+		public Faculty GetWithMoreCandidates(Faculty buf)
+		{
+			if (this.GetQuantityOfCandidates() >= buf.GetQuantityOfCandidates())
+				return (this);
+			else
+				return (buf);
+		}
+		public void IsHavingMoreStudentsThen(out int comparisonValueAndResult)
+		{
+			comparisonValueAndResult = 15;
+			if (this.GetQuantityOfTeachers() > comparisonValueAndResult)
+				comparisonValueAndResult = 1;
+			else
+				comparisonValueAndResult = 0;
+		}
+		public void IsHavingMoreTeachersThen(ref int comparisonValueAndResult)
+		{
+			if (this.GetQuantityOfTeachers() > comparisonValueAndResult)
+				comparisonValueAndResult = 1;
+			else
+				comparisonValueAndResult = 0;
 		}
 
 		public bool Read()
@@ -391,12 +424,11 @@ namespace Prog_lab6
 			if (check.SetQuantityOfDisciplines(bufInt))
 				return (true);
 
-			this.Init(check.GetFacultyName(), check.GetQuantityOfStudents(), check.GetQuantityOfBachelors(),
+			SetAll(check.GetFacultyName(), check.GetQuantityOfStudents(), check.GetQuantityOfBachelors(),
 				check.GetQuantityOfMasters(), check.GetQuantityOfTeachers(), check.GetQuantityOfTeachers(),
 				check.GetQuantityOfDoctors(), check.GetQuantityOfDisciplines());
 			return (false);
 		}
-
         public void Display()
 		{
 			Console.Write("faculty name: {0}\n", facultyName);
