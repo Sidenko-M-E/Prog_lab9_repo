@@ -83,13 +83,15 @@ Fio::Fio(string bufSurname)
 
 Fio::Fio(string bufSurname, string bufName, string bufPatronymic)
 {
-	surname = "unstated";
-	name = "unstated";
-	patronymic = "unstated";
-
 	Fio check;
 
-	if (!(check.SetSurname(bufSurname) || check.SetName(bufName) || check.SetPatronymic(bufPatronymic)))
+	if (check.SetSurname(bufSurname) || check.SetName(bufName) || check.SetPatronymic(bufPatronymic))
+	{
+		surname = "unstated";
+		name = "unstated";
+		patronymic = "unstated";
+	}
+	else
 	{
 		surname = bufSurname;
 		name = bufName;

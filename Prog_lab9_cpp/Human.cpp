@@ -109,8 +109,16 @@ Human::Human(int bufId, int bufAge, int bufHeight, double bufWeight, char bufGen
 {
 	Human check;
 
-	if (!(check.SetId(bufId) || check.SetAge(bufAge) || check.SetHeight(bufHeight) ||
-		check.SetWeight(bufWeight) || check.SetGender(bufGender)))
+	if (check.SetId(bufId) || check.SetAge(bufAge) || check.SetHeight(bufHeight) ||
+		check.SetWeight(bufWeight) || check.SetGender(bufGender))
+	{
+		id = 0;
+		age = 0;
+		height = 40;
+		weight = 0;
+		gender = 'M';
+	}
+	else
 	{
 		id = bufId;
 		age = bufAge;

@@ -135,7 +135,13 @@ Teacher::Teacher(int bufWorkExp, string bufDegree, string bufFacultyName, Human 
 {
 	Teacher check;
 
-	if (!(check.SetWorkExp(bufWorkExp) || check.SetDegree(bufDegree) || check.SetFacultyName(bufFacultyName)))
+	if (check.SetWorkExp(bufWorkExp) || check.SetDegree(bufDegree) || check.SetFacultyName(bufFacultyName))
+	{
+		workExp = 0;
+		degree = "unstated";
+		facultyName = "unstated";
+	}
+	else
 	{
 		workExp = bufWorkExp;
 		degree = bufDegree;

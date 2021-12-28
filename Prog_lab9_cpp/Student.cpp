@@ -95,14 +95,22 @@ Student::Student(Human bufHuman)
 	eduProg = "unstated";
 	group = "unstated";
 	facultyName = "unstated";
+	humanField = bufHuman;
 }
 
 Student::Student(int bufCourse, string bufEduProg, string bufGroup, string bufFacultyName, Human bufHuman)
 {
 	Student check;
 
-	if (!(check.SetCourse(bufCourse) || check.SetEduProg(bufEduProg) || check.SetGroup(bufGroup) ||
-		check.SetFacultyName(bufFacultyName)))
+	if (check.SetCourse(bufCourse) || check.SetEduProg(bufEduProg) || check.SetGroup(bufGroup) ||
+		check.SetFacultyName(bufFacultyName))
+	{
+		course = 0;
+		eduProg = "unstated";
+		group = "unstated";
+		facultyName = "unstated";
+	}
+	else
 	{
 		course = bufCourse;
 		eduProg = bufEduProg;
